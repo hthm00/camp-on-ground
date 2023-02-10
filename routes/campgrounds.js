@@ -23,7 +23,7 @@ router.get(
 	})
 );
 
-router.get("/campgrounds/new", (req, res) => {
+router.get("/new", (req, res) => {
 	res.render("campgrounds/new");
 });
 
