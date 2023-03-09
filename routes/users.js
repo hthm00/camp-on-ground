@@ -13,7 +13,7 @@ router.post(
 	"/login",
 	passport.authenticate("local", {
 		failureRedirect: "/login",
-		failureMessage: true,
+		failureFlash: true,
 	}),
 	async (req, res) => {
 		req.flash("success", "Welcome Back!");
@@ -35,8 +35,6 @@ router.post(
 		});
 		try {
 			await User.register(newUser, password);
-			// await newUser.setPassword(password);
-			// await newUser.save();
 			req.flash("success", "Register Completed. Please Login!");
 			res.redirect("/login");
 		} catch (err) {
@@ -46,5 +44,16 @@ router.post(
 		}
 	})
 );
+
+router.get("/logout", (req, res) => {
+	req.logOut((e) => {
+		if (e) {
+			console.log("Error logging out");
+			res.redirect("/");
+		} else {
+			res.redirect("/campgrounds");
+		}
+	});
+});
 
 module.exports = router;
