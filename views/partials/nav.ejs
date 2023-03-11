@@ -18,6 +18,7 @@
 			</div>
 			<div class="navbar-nav">
 				<% if (user) { %>
+				<a href="/" class="nav-link">Hi, <%= user.username %></a>
 				<a href="/logout" class="nav-link">Logout</a>
 				<% } %>
 			</div>
