@@ -44,7 +44,7 @@ router.get(
 	"/:id",
 	catchAsync(async (req, res) => {
 		const campground = await Campground.findById(req.params.id).populate(
-			"reviews"
+			"reviews author"
 		);
 		if (!campground) {
 			req.flash("error", "Does Not Exist!");
