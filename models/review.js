@@ -10,6 +10,11 @@ const reviewSchema = Schema({
 		type: String,
 		required: true,
 	},
+	author: {
+		type: Schema.Types.ObjectId,
+		ref: "User",
+		required: true,
+	},
 });
 
 const reviewModel = mongoose.model("Review", reviewSchema);
