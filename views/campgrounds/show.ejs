@@ -12,12 +12,14 @@
 
 				<img class="img-fluid d-block rounded my-3" src="<%= campground.image %>" alt="">
 				<p class="card-text"><%= campground.description %></p>
+				<% if (campground.author.equals(user)) {%>
 				<div class="text-end">
 					<a class="card-link btn btn-light" href="/campgrounds/<%=campground._id%>/edit">Edit</a>
 					<form class="d-inline-block" action="/campgrounds/<%=campground._id%>?_method=DELETE" method="POST">
 						<button class="card-link btn btn-danger">Delete</button>
+					</form>
 				</div>
-				</form>
+				<% } %>
 				<hr>
 				<div class="row">
 					<div class="col-2 col-lg-1">
@@ -52,9 +54,11 @@
 						<h5><%= review.author.username %> </h5>
 						<h5>Rating: <%= review.rating %> </h5>
 						<p><%= review.review %> </p>
+						<% if (review.author.equals(user)) {%>
 						<form action="/campgrounds/<%= campground.id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
 							<button class="btn btn-sm btn-danger">Delete</button>
 						</form>
+						<% } %>
 						<%- i !== campground.reviews.length - 1 ? "<hr>" : "" %>
 					</div>
 				</div>
