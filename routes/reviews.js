@@ -1,7 +1,6 @@
 const express = require("express");
 const catchAsync = require("../utils/catchAsync");
-const Campground = require("../models/campground");
-const Review = require("../models/review");
+
 const { isLoggedIn, isReviewAuthor, validateReview } = require("../middleware");
 const { createReview, deleteReview } = require("../controllers/reviews");
 
