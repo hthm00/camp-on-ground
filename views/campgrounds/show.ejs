@@ -12,7 +12,9 @@
 				</div>
 				<h5 class="card-subtitle text-muted"><%= campground.location %></h5>
 
-				<img class="img-fluid d-block rounded my-3" src="<%= campground.image %>" alt="">
+				<% for (let image of campground.images) { %>
+				<img class="img-fluid d-block rounded my-3" src="<%= image.path %>" alt="">
+				<% } %>
 				<p class="card-text"><%= campground.description %></p>
 				<% if (campground.author.equals(user)) {%>
 				<div class="text-end">

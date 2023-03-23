@@ -10,8 +10,12 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res) => {
+	const files = req.files.map((f) => {
+		return { fileName: f.filename, path: f.path };
+	});
 	const campground = new Campground({
 		...req.body.campground,
+		images: files,
 		author: req.user,
 	});
 	await campground.save();
