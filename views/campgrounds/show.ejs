@@ -12,9 +12,28 @@
 				</div>
 				<h5 class="card-subtitle text-muted"><%= campground.location %></h5>
 
-				<% for (let image of campground.images) { %>
-				<img class="img-fluid d-block rounded my-3" src="<%= image.path %>" alt="">
-				<% } %>
+				<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+					<div class="carousel-inner">
+						<% for (let [i, image] of campground.images.entries()) { %>
+						<div class="carousel-item <%= i == 0 ? "active" : "" %>">
+							<img src="<%= image.path %>" class="d-block w-100 img-fluid rounded" alt="">
+						</div>
+						<% } %>
+					</div>
+					<% console.log(campground.images.length) %>
+					<% if (campground.images.length > 1) { %>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+					<% } %>
+				</div>
+				<!-- <img class="img-fluid d-block rounded my-3" src="" alt=""> -->
+
 				<p class="card-text"><%= campground.description %></p>
 				<% if (campground.author.equals(user)) {%>
 				<div class="text-end">
