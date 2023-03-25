@@ -60,6 +60,7 @@ router
 	.put(
 		isLoggedIn,
 		isCamgroundAuthor,
+		upload.array("campground[images]"),
 		validateCampground,
 		catchAsync(updateCampground)
 	)

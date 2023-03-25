@@ -29,11 +29,11 @@ const seedDB = async () => {
 			title: `${sample(descriptors)} ${sample(places)}`,
 			images: [
 				{
-					fileName: "gpmn48vu2wxsvdscgsyi",
+					fileName: "CampOnGround/gpmn48vu2wxsvdscgsyi",
 					path: "https://res.cloudinary.com/dwl8dexri/image/upload/v1679530201/CampOnGround/gpmn48vu2wxsvdscgsyi.jpg",
 				},
 				{
-					fileName: "c1d3qirwohlw729jt1pq",
+					fileName: "CampOnGround/c1d3qirwohlw729jt1pq",
 					path: "https://res.cloudinary.com/dwl8dexri/image/upload/v1679530202/CampOnGround/c1d3qirwohlw729jt1pq.jpg",
 				},
 			],
