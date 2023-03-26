@@ -13,14 +13,6 @@
 				<input class="form-control" type="text" id="location" name="campground[location]" required>
 			</div>
 			<div class="mb-3">
-				<label for="formFile" class="form-label">Images</label>
-				<input class="form-control" type="file" id="formFile" name="campground[images]" multiple>
-			</div>
-			<!-- <div class="mb-3">
-				<label for="image" class="form-label">Image URL</label>
-				<input class="form-control" type="text" id="image" name="campground[image]" required>
-			</div> -->
-			<div class="mb-3">
 				<label for="price" class="form-label">Price</label>
 				<div class="input-group">
 					<span class="input-group-text" id="price">$</span>
@@ -31,7 +23,29 @@
 				<label for="description" class="form-label">Description</label>
 				<textarea class="form-control" type="text" id="description" name="campground[description]" required></textarea>
 			</div>
+			<div class="mb-3">
+				<label for="formFile" class="form-label">Images</label>
+				<input class="form-control" type="file" id="formFile" name="campground[images]" onchange="previewMultiple(event)" multiple>
+				<label for="formFile" class="form-label"></label>
+				<div class="row" id="img-preview"></div>
+			</div>
 			<button class="btn btn-primary">Add Campground</button>
 		</form>
 	</div>
 </div>
+
+<script>
+	function previewMultiple(event) {
+		// select imgPreview div where imgs will be displayed:
+		const imgPreview = document.querySelector("#img-preview");
+		// clear previous images:
+		imgPreview.innerHTML = "";
+		for (i = 0; i < event.target.files.length; i++) {
+			const urls = URL.createObjectURL(event.target.files[i]);
+			const fileName = event.target.files[i].name;
+			imgPreview.innerHTML += `<figure class="figure col-sm-6 col-lg-3 align-self-end">
+<img class="img-thumbnail" src="${urls}"><figcaption class="figure-caption">${fileName}</figcaption></figure>
+`;
+		}
+	}
+</script>
