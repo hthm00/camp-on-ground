@@ -10,9 +10,7 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createCampground = async (req, res) => {
-	const files = req.files.map((f) => {
-		return { fileName: f.filename, path: f.path };
-	});
+	const files = req.files.map((f) => ({ fileName: f.filename, path: f.path }));
 	const campground = new Campground({
 		...req.body.campground,
 		images: files,
@@ -50,9 +48,7 @@ module.exports.renderEditCampground = async (req, res) => {
 
 module.exports.updateCampground = async (req, res) => {
 	const { id } = req.params;
-	const files = req.files.map((f) => {
-		return { fileName: f.filename, path: f.path };
-	});
+	const files = req.files.map((f) => ({ fileName: f.filename, path: f.path }));
 	const campground = await Campground.findById(id);
 	await campground.updateOne({
 		...req.body.campground,
