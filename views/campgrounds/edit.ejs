@@ -13,8 +13,15 @@
 				<input class="form-control" type="text" id="location" name="campground[location]" value="<%=campground.location %>" required>
 			</div>
 			<div class="mb-3">
-				<label for="formFile" class="form-label">Add Images</label>
-				<input class="form-control" type="file" id="formFile" name="campground[images]" multiple>
+				<label for="price" class="form-label">Price</label>
+				<div class="input-group">
+					<span class="input-group-text" id="price">$</span>
+					<input value="<%=campground.price %>" name="campground[price]" type="text" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="price" required>
+				</div>
+			</div>
+			<div class="mb-3">
+				<label for="description" class="form-label">Description</label>
+				<textarea class="form-control" type="text" id="description" name="campground[description]" required><%= campground.description %> </textarea>
 			</div>
 			<div class="row gx-3 mb-3">
 				<label class="form-label">Delete Images</label>
@@ -31,17 +38,14 @@
 				<% } %>
 			</div>
 			<div class="mb-3">
-				<label for="price" class="form-label">Price</label>
-				<div class="input-group">
-					<span class="input-group-text" id="price">$</span>
-					<input value="<%=campground.price %>" name="campground[price]" type="text" class="form-control" placeholder="0.00" aria-label="price" aria-describedby="price" required>
-				</div>
-			</div>
-			<div class="mb-3">
-				<label for="description" class="form-label">Description</label>
-				<textarea class="form-control" type="text" id="description" name="campground[description]" required><%= campground.description %> </textarea>
+				<label for="formFile" class="form-label">Add New Images</label>
+				<input class="form-control" type="file" id="formFile" name="campground[images]" onchange="previewMultiple(event)" multiple>
+				<label for="formFile" class="form-label"></label>
+				<div class="row" id="img-preview"></div>
 			</div>
 			<button class="btn btn-primary">Update Campground</button>
 		</form>
 	</div>
 </div>
+
+<script src="/js/previewFiles.js"></script>
