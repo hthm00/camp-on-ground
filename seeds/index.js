@@ -30,11 +30,11 @@ const seedDB = async () => {
 			images: [
 				{
 					fileName: "CampOnGround/gpmn48vu2wxsvdscgsyi",
-					path: "https://res.cloudinary.com/dwl8dexri/image/upload/v1679530201/CampOnGround/gpmn48vu2wxsvdscgsyi.jpg",
+					path: "https://res.cloudinary.com/dwl8dexri/image/upload/v1679530201/CampOnGround/gu59en42z59vysahxmg9.jpg",
 				},
 				{
 					fileName: "CampOnGround/c1d3qirwohlw729jt1pq",
-					path: "https://res.cloudinary.com/dwl8dexri/image/upload/v1679530202/CampOnGround/c1d3qirwohlw729jt1pq.jpg",
+					path: "https://res.cloudinary.com/dwl8dexri/image/upload/v1679530202/CampOnGround/bquy2cctkbxn8kakp0qo.jpg",
 				},
 			],
 			description:

@@ -1,10 +1,5 @@
-if (process.env.NODE_ENV !== "production") {
-	require("dotenv").config();
-}
 const express = require("express");
-const multer = require("multer");
-const cloudinary = require("cloudinary").v2;
-const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const { upload } = require("../cloudinary");
 const catchAsync = require("../utils/catchAsync");
 const {
 	isLoggedIn,
@@ -21,23 +16,6 @@ const {
 	updateCampground,
 	deleteCampground,
 } = require("../controllers/campgrounds");
-
-// Configuration
-cloudinary.config({
-	cloud_name: process.env.CLOUDINARY_NAME,
-	api_key: process.env.CLOUDINARY_KEY,
-	api_secret: process.env.CLOUDINARY_SECRET,
-});
-
-const storage = new CloudinaryStorage({
-	cloudinary: cloudinary,
-	params: {
-		folder: "CampOnGround",
-		allowed_formats: ["png", "jpeg", "jpg"],
-	},
-});
-
-const upload = multer({ storage: storage });
 
 const router = express.Router();
 
