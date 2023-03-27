@@ -53,14 +53,13 @@
 				</div>
 			</div>
 		</div>
+		<div class="w-100 rounded" id="map" style="height: 300px;"></div>
 	</div>
 	<div class="col-md-10 col-xl-4">
 		<div class="card">
 			<div class="card-body">
 				<form class="validated-form mb-2" action="/campgrounds/<%= campground.id %>/reviews" method="POST" novalidate>
 					<h2 class="card-title">Leave a review</h2>
-					<!-- <label for="rating" class="form-label">Rating</label> -->
-					<!-- <input name="review[rating]" min="1" max="5" type="range" class="form-range" id="rating" required> -->
 					<fieldset class="starability-heart">
 						<input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
 
@@ -94,7 +93,6 @@
 					<div class="col">
 						<h5><%= review.author.username %> </h5>
 						<h5 class="starability-result" data-rating="<%= review.rating %>"></h5>
-						<!-- <h5>Rating: </h5> -->
 						<p><%= review.review %> </p>
 						<% if (review.author.equals(user)) {%>
 						<form action="/campgrounds/<%= campground.id %>/reviews/<%= review._id %>?_method=DELETE" method="POST">
@@ -109,3 +107,16 @@
 		</div>
 	</div>
 </div>
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiaHV5bmh0dWhvYW5nbWluaCIsImEiOiJjbGZyNWZoeXEwMHd2NDFubHI2OGxpNHI0In0.8iB6tsDiYn9q1nX_trnOYg';
+	const map = new mapboxgl.Map({
+		container: 'map', // container ID
+		// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+		style: 'mapbox://styles/mapbox/streets-v12', // style URL
+		center: [-74.5, 40], // starting position [lng, lat]
+		zoom: 9 // starting zoom
+	});
+</script>
