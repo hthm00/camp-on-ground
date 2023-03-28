@@ -1,5 +1,9 @@
 const { cloudinary } = require("../cloudinary");
 const Campground = require("../models/campground");
+const geocoding = require("@mapbox/mapbox-sdk/services/geocoding");
+const geocodingClient = geocoding({
+	accessToken: process.env.MAPBOX_TOKEN,
+});
 
 module.exports.renderAllCampgrounds = async (req, res) => {
 	const campgrounds = await Campground.find({});
@@ -72,4 +76,22 @@ module.exports.deleteCampground = async (req, res) => {
 	await Campground.findByIdAndDelete(id);
 	req.flash("success", "Delete Success!");
 	res.redirect("/campgrounds");
+};
+
+module.exports.geoFetch = async (req, res, next) => {
+	const { location } = req.body.campground;
+	const geoData = await geocodingClient
+		.forwardGeocode({
+			query: location,
+			limit: 1,
+		})
+		.send();
+	let geometry = { type: "Point", coordinates: [-122.330062, 47.603832] };
+	if (geoData && geoData.body.features) {
+		if ((feature = geoData.body.features[0])) {
+			geometry = feature.geometry;
+		}
+	}
+	req.body.campground.geometry = geometry;
+	next();
 };

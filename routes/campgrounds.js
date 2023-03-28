@@ -15,6 +15,7 @@ const {
 	renderEditCampground,
 	updateCampground,
 	deleteCampground,
+	geoFetch,
 } = require("../controllers/campgrounds");
 
 const router = express.Router();
@@ -26,6 +27,7 @@ router
 		isLoggedIn,
 		upload.array("campground[images]"),
 		validateCampground,
+		geoFetch,
 		catchAsync(createCampground)
 	);
 
@@ -40,6 +42,7 @@ router
 		isCamgroundAuthor,
 		upload.array("campground[images]"),
 		validateCampground,
+		geoFetch,
 		catchAsync(updateCampground)
 	)
 	.delete(isLoggedIn, isCamgroundAuthor, catchAsync(deleteCampground));
