@@ -7,8 +7,8 @@
 		<div class="card mb-2">
 			<div class="card-body">
 				<div class="card-title">
-					<h3 class="d-inline"><%= campground.title %> </h3>
-					<h3 class="d-inline float-end">$<%= campground.price %>/night</h3>
+					<h4 class="d-inline"><%= campground.title %> </h4>
+					<h4 class="d-inline float-end">$<%= campground.price %>/night</h4>
 				</div>
 				<h5 class="card-subtitle text-muted"><%= campground.location %></h5>
 
@@ -59,7 +59,7 @@
 		<div class="card">
 			<div class="card-body">
 				<form class="validated-form mb-2" action="/campgrounds/<%= campground.id %>/reviews" method="POST" novalidate>
-					<h2 class="card-title">Leave a review</h2>
+					<h4 class="card-title">Leave a review</h4>
 					<fieldset class="starability-heart">
 						<input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
 
@@ -111,7 +111,7 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
 
-<script>
+<script type="">
 	const coordinates = <%- JSON.stringify(campground.geometry.coordinates) %>;
 	mapboxgl.accessToken = '<%- process.env.MAPBOX_TOKEN %>';
 	const map = new mapboxgl.Map({
