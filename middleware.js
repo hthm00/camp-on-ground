@@ -23,10 +23,11 @@ module.exports.isCamgroundAuthor = async (req, res, next) => {
 };
 
 module.exports.validateCampground = (req, res, next) => {
-	const result = campgroundSchema.validate(req.body);
-	if (result.error) {
-		throw new ExpressError(result.error.details[0].message, 400);
+	const { error, value } = campgroundSchema.validate(req.body);
+	if (error) {
+		throw new ExpressError(error.details[0].message, 400);
 	} else {
+		req.body = value;
 		next();
 	}
 };
@@ -42,10 +43,11 @@ module.exports.isReviewAuthor = async (req, res, next) => {
 };
 
 module.exports.validateReview = (req, res, next) => {
-	const result = reviewSchema.validate(req.body);
-	if (result.error) {
-		throw new ExpressError(result.error.details[0].message, 400);
+	const { error, value } = reviewSchema.validate(req.body);
+	if (error) {
+		throw new ExpressError(error.details[0].message, 400);
 	} else {
+		req.body = value;
 		next();
 	}
 };
