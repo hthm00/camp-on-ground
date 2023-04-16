@@ -40,9 +40,12 @@ app.set("views", path.join(__dirname, "views"));
 
 const sessOptions = {
 	secret: "this is a sample secret",
+	name: "session_id",
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
+		httpOnly: true,
+		// secure: true,
 		maxAge: 7 * 24 * 3600 * 1000,
 	},
 };
