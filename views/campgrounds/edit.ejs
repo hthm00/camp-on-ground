@@ -28,7 +28,7 @@
 				<% for (let [i, image] of campground.images.entries()) { %>
 				<div class="col-sm-6 col-lg-3 mb-2">
 					<div class="card">
-						<img src="<%= image.path %>" class="card-img img-fluid w-100 rounded" alt="">
+						<img src="<%= image.path %>" class="card-img img-fluid w-100 rounded" alt="image" crossorigin="anonymous">
 						<div class="card-img-overlay text-end pt-0 pe-1">
 							<label class="visually-hidden" for="image-<%= i %>">Delete Image</label>
 							<input class="form-check-input" type="checkbox" value="<%= image.fileName %>" id="image-<%= i %>" name="deleteImages[]">
@@ -39,7 +39,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="formFile" class="form-label">Add New Images</label>
-				<input class="form-control" type="file" id="formFile" name="campground[images]" onchange="previewMultiple(event)" multiple>
+				<input class="form-control" type="file" id="formFile" name="campground[images]" multiple>
 				<label for="formFile" class="form-label"></label>
 				<div class="row" id="img-preview"></div>
 			</div>

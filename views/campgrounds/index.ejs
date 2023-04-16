@@ -6,7 +6,7 @@
 	<% for (let campground of campgrounds){%>
 	<div class="col-md-4 col-lg-3 mb-3">
 		<div class="card overflow-hidden">
-			<img class="img-fluid" src="<%= campground.images[0].path %> " class="card-img-top" alt="...">
+			<img class="img-fluid" src="<%= campground.images[0].path %> " class="card-img-top" alt="image" crossorigin="anonymous">
 			<div class="card-body">
 				<h5><%= campground.title %></h5>
 				<small class="text-muted"> <%= campground.location %></small></p>
@@ -17,8 +17,8 @@
 	<% }%>
 </div>
 
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js" crossorigin="anonymous"></script>
 <script type="">
 	const campgrounds = <%- JSON.stringify(campgrounds) %>;
 	const MAPBOX_TOKEN = '<%- process.env.MAPBOX_TOKEN %>';

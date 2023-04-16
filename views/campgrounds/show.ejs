@@ -16,7 +16,7 @@
 					<div class="carousel-inner">
 						<% for (let [i, image] of campground.images.entries()) { %>
 						<div class="carousel-item <%= i == 0 ? "active" : "" %>">
-							<img src="<%= image.path %>" class="d-block w-100 img-fluid rounded" alt="">
+							<img src="<%= image.path %>" class="d-block w-100 img-fluid rounded" alt="image" crossorigin="anonymous">
 						</div>
 						<% } %>
 					</div>
@@ -108,8 +108,8 @@
 	</div>
 </div>
 
-<link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet">
-<script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.css" rel="stylesheet" crossorigin="anonymous">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.13.0/mapbox-gl.js" crossorigin="anonymous"></script>
 
 <script type="">
 	const coordinates = <%- JSON.stringify(campground.geometry.coordinates) %>;

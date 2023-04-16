@@ -11,3 +11,6 @@ const previewMultiple = (event) => {
 `;
 	}
 };
+
+const imageUpload = document.getElementById("formFile");
+imageUpload.addEventListener("change", previewMultiple);
