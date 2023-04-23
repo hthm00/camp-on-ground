@@ -7,6 +7,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const ejsMate = require("ejs-mate");
 const session = require("express-session");
+const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -20,7 +21,8 @@ const userRoutes = require("./routes/users");
 
 const User = require("./models/user");
 
-mongoose.connect("mongodb://localhost:27017/yelp-camp", {
+const dbURL = process.env.DB_URL || "mongodb://localhost:27017/yelp-camp";
+mongoose.connect(dbURL, {
 	useNewUrlParser: true,
 	useCreateIndex: true,
 	useUnifiedTopology: true,
@@ -39,14 +41,21 @@ app.engine("ejs", ejsMate);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
+const secret = process.env.SECRET || "this is a sample secret";
+const store = MongoStore.create({
+	mongoUrl: dbURL,
+	touchAfter: 24 * 3600,
+	secret,
+});
 const sessOptions = {
-	secret: "this is a sample secret",
+	store,
+	secret,
 	name: "session_id",
 	resave: false,
 	saveUninitialized: true,
 	cookie: {
 		httpOnly: true,
-		// secure: true,
+		secure: process.env.NODE_EVN === "production",
 		maxAge: 7 * 24 * 3600 * 1000,
 	},
 };
@@ -96,6 +105,7 @@ app.use(
 				"data:",
 				"https://res.cloudinary.com/dwl8dexri/",
 				"https://images.unsplash.com/",
+				"https://images.pexels.com",
 			],
 			fontSrc: ["'self'", ...fontSrcUrls],
 		},
@@ -135,6 +145,7 @@ app.use((err, req, res, next) => {
 	res.status(err.statusCode).render("error", { err });
 });
 
-app.listen(3001, () => {
-	console.log("Serving on port 3001");
+const port = process.env.PORT || 3001;
+app.listen(port, () => {
+	console.log(`Serving on port ${port}`);
 });
